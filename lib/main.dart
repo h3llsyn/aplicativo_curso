@@ -24,7 +24,7 @@ class MeuApp extends StatelessWidget {
         ),
         useMaterial3: true,
         navigationBarTheme: const NavigationBarThemeData(
-          backgroundColor: Colors.red,
+          backgroundColor: const Color.fromARGB(255, 209, 0, 70),
           indicatorColor: Colors.white24,
           iconTheme: WidgetStatePropertyAll(
             IconThemeData(
