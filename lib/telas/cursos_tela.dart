@@ -19,6 +19,7 @@ class CursoPage extends StatefulWidget {
 }
 
 class _CursoPageState extends State<CursoPage> {
+
   String resultado = '';
 
   @override
@@ -51,7 +52,9 @@ class _CursoPageState extends State<CursoPage> {
             child: ListView.builder(
               itemCount: cursosFiltrados.length,
               itemBuilder: (context, indice) {
-                final indiceOriginal = widget.cursos.indexOf(cursosFiltrados[indice]);
+                final indiceOriginal = widget.cursos.indexOf(
+                  cursosFiltrados[indice],
+                );
                 return Card(
                   child: Stack(
                     children: [
@@ -74,14 +77,23 @@ class _CursoPageState extends State<CursoPage> {
                         right: 4,
                         child: IconButton(
                           icon: Icon(
-                            widget.favoritos[indiceOriginal] ? Icons.favorite : Icons.favorite_outline,
+                            widget.favoritos[indiceOriginal]
+                                ? Icons.favorite
+                                : Icons.favorite_outline,
                             size: 24,
-                            color: widget.favoritos[indiceOriginal] ? Colors.red : Colors.black,
+                            color: widget.favoritos[indiceOriginal]
+                                ? Colors.red
+                                : Colors.black,
                           ),
                           onPressed: () {
                             widget.onFavoritoChanged(indiceOriginal);
                           },
                         ),
+                      ),
+                      LinearProgressIndicator(
+                        value:0.12,
+                        backgroundColor: Colors.redAccent,
+                        color: Colors.blue,
                       ),
                     ],
                   ),
