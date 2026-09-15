@@ -28,6 +28,8 @@ class _CursoPageState extends State<CursoPage> {
 
   String resultado = '';
 
+  late final List<bool> _favoritos = List.filled(cursos.length, false);
+
   @override
   Widget build(BuildContext context) {
     final cursosFiltrados = cursos.where((curso) {
@@ -41,7 +43,7 @@ class _CursoPageState extends State<CursoPage> {
           TextField(
             decoration: InputDecoration(
               hintText: 'Buscar curso...',
-              prefixIcon: Icon(Icons.search),
+              prefixIcon: const Icon(Icons.search),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(24),
                 borderSide: const BorderSide(color: Colors.grey, width: 2.0),
@@ -53,26 +55,47 @@ class _CursoPageState extends State<CursoPage> {
               });
             },
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Expanded(
             child: ListView.builder(
               itemCount: cursosFiltrados.length,
               itemBuilder: (context, indice) {
                 final indiceOriginal = cursos.indexOf(cursosFiltrados[indice]);
+                
                 return Card(
-                  child: ListTile(
-                    title: Row(
-                      children: [
-                        Icon(Icons.flutter_dash_outlined),
-                        SizedBox(width: 4,),
-                        Text(cursosFiltrados[indice]),
-                      ],
-                    ),
-                    leading: CircleAvatar(
-                      child: Icon(Icons.play_arrow),
-                    ),
-                    subtitle: Text(descricao[indiceOriginal]),
-                    trailing: const Icon(Icons.chevron_right),
+                  child: Stack(
+                    children: [
+                      ListTile(
+                        title: Row(
+                          children: [
+                            const Icon(Icons.flutter_dash_outlined),
+                            const SizedBox(width: 4),
+                            Text(cursosFiltrados[indice]),
+                          ],
+                        ),
+                        leading: const CircleAvatar(
+                          child: Icon(Icons.play_arrow),
+                        ),
+                        subtitle: Text(descricao[indiceOriginal]),
+                        trailing: const Icon(Icons.chevron_right),
+                      ),
+                      Positioned(
+                        top: 4,
+                        right: 4,
+                        child: IconButton(
+                          icon: Icon(
+                            _favoritos[indiceOriginal] ? Icons.favorite : Icons.favorite_outline,
+                            size: 24,
+                            color: _favoritos[indiceOriginal] ? Colors.red : Colors.black,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _favoritos[indiceOriginal] = !_favoritos[indiceOriginal];
+                            });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 );
               },
