@@ -19,11 +19,11 @@ class MeuApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.redAccent
         ),
-        scaffoldBackgroundColor: Color(
+        scaffoldBackgroundColor: const Color(
           0xFFF5F3FA
         ),
         useMaterial3: true,
-        navigationBarTheme: NavigationBarThemeData(
+        navigationBarTheme: const NavigationBarThemeData(
           backgroundColor: Colors.red,
           indicatorColor: Colors.white24,
           iconTheme: WidgetStatePropertyAll(
@@ -38,7 +38,7 @@ class MeuApp extends StatelessWidget {
           )
         ),
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
@@ -53,15 +53,27 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State<HomePage>{
   int indice = 0;
   
-  final telas = [
-    InicioPage(),
-    CursoPage(),
-    PerfilPage(),
-    FavoritosPage(),
+  final List<String> cursos = [
+    'Flutter Básico',
+    'Dart Essencial',
+    'Interface Mobile',
+    'Conexão API',
+    'Banco de Dados',
+    'Desenvolvimento Mobile',
   ];
 
-  final titulos =
-  [
+  final List<String> descricao = [
+    'Curso introdutório sobre desenvolvimento mobile utilizando Flutter\n12 aulas\nContinuar curso',
+    'Curso essencial sobre os fundamentos de lógica de programção em Dart\nDart Essencial\n12 aulas\nContinuar curso',
+    'Venha aprender UI/UX em um curso introdutório ao assunto\nInterface Mobile\n12 aulas\nContinuar curso',
+    'Venha aprender a conectar o seu backend com seu frontend nesse curso de Java\nConexão API\n12 aulas\nIniciar curso',
+    'Curso de API eba\nConexão API\n12 aulas\nIniciar curso',
+    'Curso pra conectar a API eba\nConexão API\n12 aulas\nIniciar curso',
+  ];
+
+  late final List<bool> favoritos = List.filled(cursos.length, false);
+
+  final titulos = [
     'Home',
     'Meus Cursos',
     'Meu Perfil',
@@ -70,6 +82,29 @@ class _HomePageState extends State<HomePage>{
 
   @override
   Widget build(BuildContext context){
+    List<String> listaFavoritos = [];
+    for (int i = 0; i < cursos.length; i++) {
+      if (favoritos[i]) {
+        listaFavoritos.add(cursos[i]);
+      }
+    }
+
+    final telas = [
+      const InicioPage(),
+      CursoPage(
+        cursos: cursos,
+        descricao: descricao,
+        favoritos: favoritos,
+        onFavoritoChanged: (index) {
+          setState(() {
+            favoritos[index] = !favoritos[index];
+          });
+        },
+      ),
+      const PerfilPage(),
+      FavoritosPage(cursosFavoritados: listaFavoritos),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -85,7 +120,7 @@ class _HomePageState extends State<HomePage>{
           });
         },
         selectedIndex: indice,
-        destinations: [
+        destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
             label: 'Home'
