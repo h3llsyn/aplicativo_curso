@@ -38,25 +38,27 @@ class _CursoPageState extends State<CursoPage> {
             ),
           ),
           SizedBox(height: 12,),
-          ListView.builder(
-            itemCount: cursos.length,
-            itemBuilder: (context, indice) => Card(
-              child: ListTile(
-                title: Row(
-                  children: [
-                    Icon(Icons.flutter_dash),
-                    SizedBox(width: 4,),
-                    Text(cursos[indice]),
-                  ],
-                ),
-                leading: CircleAvatar(
-                  child: Icon(Icons.play_arrow),
-                ),
-                subtitle: Text(
-                  descricao[indice]
-                ),
-                trailing: Icon(
-                  Icons.chevron_right
+          Expanded(
+            child: ListView.builder(
+              itemCount: cursos.length,
+              itemBuilder: (context, indice) => Card(
+                child: ListTile(
+                  title: Row(
+                    children: [
+                      Icon(Icons.flutter_dash),
+                      SizedBox(width: 4,),
+                      Text(cursos[indice]),
+                    ],
+                  ),
+                  leading: CircleAvatar(
+                    child: Icon(Icons.play_arrow),
+                  ),
+                  subtitle: Text(
+                    descricao[indice]
+                  ),
+                  trailing: Icon(
+                    Icons.chevron_right
+                  ),
                 ),
               ),
             ),
