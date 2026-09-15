@@ -1,3 +1,7 @@
+import 'package:aplicativo_cursos/telas/cursos_tela.dart';
+import 'package:aplicativo_cursos/telas/favoritos_tela.dart';
+import 'package:aplicativo_cursos/telas/inicio_tela.dart';
+import 'package:aplicativo_cursos/telas/perfil_tela.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +24,7 @@ class MeuApp extends StatelessWidget {
         ),
         useMaterial3: true,
         navigationBarTheme: NavigationBarThemeData(
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.red,
           indicatorColor: Colors.white24,
           iconTheme: WidgetStatePropertyAll(
             IconThemeData(
@@ -53,13 +57,15 @@ class _HomePageState extends State<HomePage>{
     InicioPage(),
     CursoPage(),
     PerfilPage(),
+    FavoritosPage(),
   ];
 
   final titulos =
   [
     'Home',
     'Meus Cursos',
-    'Meu Perfil'
+    'Meu Perfil',
+    'Meus Favoritos',
   ];
 
   @override
@@ -92,142 +98,12 @@ class _HomePageState extends State<HomePage>{
             icon: Icon(Icons.person_outlined),
             label: 'Perfil'
           ),
+          NavigationDestination(
+            icon: Icon(Icons.star_outline),
+            label: 'Favoritos'
+          ),
         ],
       ),
-    );
-  }
-}
-
-class InicioPage extends StatelessWidget{
-  const InicioPage({super.key});
-
-  @override
-  Widget build(BuildContext context){
-    return ListView(
-      padding: EdgeInsets.all(20),
-      children: [
-        Text(
-          'Olá, estudante!',
-          style: Theme.of(context)
-          .textTheme
-          .headlineMedium
-          ?.copyWith(fontWeight: FontWeight.bold),
-        ),
-
-        SizedBox(height: 8,),
-
-        Text(
-          'Continue aprendendo e evoluindo'
-        ),
-
-        SizedBox(height: 24,),
-
-        Container(
-          padding: EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(
-              colors: [
-                Colors.redAccent,
-                Colors.pinkAccent
-              ],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 10,
-                offset: Offset(0, 5)
-              )
-            ]
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Icon(
-                Icons.flutter_dash,
-                color: Colors.white,
-                size: 46,
-              ),
-              Text(
-                'Flutter Básico',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-              Text(
-                '8 de 12 aulas concluídas',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          )
-        )
-      ],
-    );
-  }
-}
-
-class CursoPage extends StatelessWidget{
-  const CursoPage({super.key});
-
-  @override
-  Widget build(BuildContext context){
-    final cursos = [
-      'Flutter Básico',
-      'Dart Essencial',
-      'Interface Mobile',
-      'Conexão API',
-    ];
-
-    return ListView.builder(
-      itemCount: cursos.length,
-      itemBuilder: (context, indice) => Card(
-        child: ListTile(
-          title: Text(cursos[indice]),
-          leading: CircleAvatar(
-            child: Icon(Icons.play_arrow),
-          ),
-          subtitle: Text(
-            'Toque para continuar'
-          ),
-          trailing: Icon(
-            Icons.chevron_right
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class PerfilPage extends StatelessWidget{
-  const PerfilPage({super.key});
-
-  @override
-  Widget build(BuildContext context){
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CircleAvatar(
-            radius: 46,
-            child: Icon(
-              Icons.person_outlined,
-              size: 52,
-            ),
-          ),
-          SizedBox(height: 16,),
-          Text(
-            'Aluno Flutter',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold
-            ),
-          )
-        ],
-      )
     );
   }
 }
