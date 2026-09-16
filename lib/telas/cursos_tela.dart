@@ -4,14 +4,18 @@ class CursoPage extends StatefulWidget {
   final List<String> cursos;
   final List<String> descricao;
   final List<bool> favoritos;
+  final List<double> progresso;
   final Function(int) onFavoritoChanged;
+  final Function(int, double)? onProgressoChanged;
 
   const CursoPage({
     super.key,
     required this.cursos,
     required this.descricao,
     required this.favoritos,
+    required this.progresso,
     required this.onFavoritoChanged,
+    this.onProgressoChanged,
   });
 
   @override
@@ -19,7 +23,6 @@ class CursoPage extends StatefulWidget {
 }
 
 class _CursoPageState extends State<CursoPage> {
-
   String resultado = '';
 
   @override
@@ -56,46 +59,58 @@ class _CursoPageState extends State<CursoPage> {
                   cursosFiltrados[indice],
                 );
                 return Card(
-                  child: Stack(
-                    children: [
-                      ListTile(
-                        title: Row(
-                          children: [
-                            const Icon(Icons.flutter_dash_outlined),
-                            const SizedBox(width: 4),
-                            Text(cursosFiltrados[indice]),
-                          ],
-                        ),
-                        leading: const CircleAvatar(
-                          child: Icon(Icons.play_arrow),
-                        ),
-                        subtitle: Text(widget.descricao[indiceOriginal]),
-                        trailing: const Icon(Icons.chevron_right),
-                      ),
-                      Positioned(
-                        top: 4,
-                        right: 4,
-                        child: IconButton(
-                          icon: Icon(
-                            widget.favoritos[indiceOriginal]
-                                ? Icons.favorite
-                                : Icons.favorite_outline,
-                            size: 24,
-                            color: widget.favoritos[indiceOriginal]
-                                ? Colors.red
-                                : Colors.black,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 6.0),
+                          child: ListTile(
+                            title: Row(
+                              children: [
+                                const Icon(Icons.flutter_dash_outlined),
+                                const SizedBox(width: 4),
+                                Text(cursosFiltrados[indice]),
+                              ],
+                            ),
+                            leading: const CircleAvatar(
+                              child: Icon(Icons.play_arrow),
+                            ),
+                            subtitle: Text(widget.descricao[indiceOriginal]),
+                            trailing: const Icon(Icons.chevron_right),
                           ),
-                          onPressed: () {
-                            widget.onFavoritoChanged(indiceOriginal);
-                          },
                         ),
-                      ),
-                      LinearProgressIndicator(
-                        value:0.12,
-                        backgroundColor: Colors.redAccent,
-                        color: Colors.blue,
-                      ),
-                    ],
+                        Positioned(
+                          top: 4,
+                          right: 4,
+                          child: IconButton(
+                            icon: Icon(
+                              widget.favoritos[indiceOriginal]
+                                  ? Icons.favorite
+                                  : Icons.favorite_outline,
+                              size: 24,
+                              color: widget.favoritos[indiceOriginal]
+                                  ? Colors.red
+                                  : Colors.black,
+                            ),
+                            onPressed: () {
+                              widget.onFavoritoChanged(indiceOriginal);
+                            },
+                          ),
+                        ),
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          child: LinearProgressIndicator(
+                            value: widget.progresso[indiceOriginal],
+                            backgroundColor: const Color.fromARGB(255, 255, 193, 193),
+                            color: Colors.redAccent,
+                            minHeight: 6,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

@@ -24,7 +24,7 @@ class MeuApp extends StatelessWidget {
         ),
         useMaterial3: true,
         navigationBarTheme: const NavigationBarThemeData(
-          backgroundColor: const Color.fromARGB(255, 209, 0, 70),
+          backgroundColor: Color.fromARGB(255, 209, 0, 70),
           indicatorColor: Colors.white24,
           iconTheme: WidgetStatePropertyAll(
             IconThemeData(
@@ -72,6 +72,7 @@ class _HomePageState extends State<HomePage>{
   ];
 
   late final List<bool> favoritos = List.filled(cursos.length, false);
+  late final List<double> progresso = [0.12, 0.45, 0.80, 0.0, 0.0, 0.0];
 
   final titulos = [
     'Home',
@@ -95,6 +96,7 @@ class _HomePageState extends State<HomePage>{
         cursos: cursos,
         descricao: descricao,
         favoritos: favoritos,
+        progresso: progresso,
         onFavoritoChanged: (index) {
           setState(() {
             favoritos[index] = !favoritos[index];
