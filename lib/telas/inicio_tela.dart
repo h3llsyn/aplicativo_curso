@@ -34,7 +34,7 @@ class InicioPage extends StatelessWidget {
             SecoesCard(
               quantidade: '18',
               subtitulo: 'Aulas concluídas'
-            )
+            ),
           ],
         ),
         SizedBox(height: 24),

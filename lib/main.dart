@@ -1,6 +1,7 @@
 import 'package:aplicativo_cursos/telas/cursos_tela.dart';
 import 'package:aplicativo_cursos/telas/favoritos_tela.dart';
 import 'package:aplicativo_cursos/telas/inicio_tela.dart';
+import 'package:aplicativo_cursos/telas/notificacoes_tela.dart';
 import 'package:aplicativo_cursos/telas/perfil_tela.dart';
 import 'package:flutter/material.dart';
 
@@ -77,8 +78,9 @@ class _HomePageState extends State<HomePage>{
   final titulos = [
     'Home',
     'Meus Cursos',
-    'Meu Perfil',
     'Meus Favoritos',
+    'Notificações',
+    'Meu Perfil',
   ];
 
   @override
@@ -103,8 +105,9 @@ class _HomePageState extends State<HomePage>{
           });
         },
       ),
-      const PerfilPage(),
       FavoritosPage(cursosFavoritados: listaFavoritos),
+      const NotificacoesTela(),
+      const PerfilPage(),
     ];
 
     return Scaffold(
@@ -132,12 +135,16 @@ class _HomePageState extends State<HomePage>{
             label: 'Cursos'
           ),
           NavigationDestination(
-            icon: Icon(Icons.person_outlined),
-            label: 'Perfil'
-          ),
-          NavigationDestination(
             icon: Icon(Icons.star_outline),
             label: 'Favoritos'
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.notifications_outlined),
+            label: 'Notificações'
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_outlined),
+            label: 'Perfil'
           ),
         ],
       ),
