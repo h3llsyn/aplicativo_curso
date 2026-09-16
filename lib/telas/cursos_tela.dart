@@ -58,6 +58,13 @@ class _CursoPageState extends State<CursoPage> {
                 final indiceOriginal = widget.cursos.indexOf(
                   cursosFiltrados[indice],
                 );
+                
+                final int aulasConcluidas = (widget.progresso[indiceOriginal] * 12).round();
+                final String textoAulas = '$aulasConcluidas/12 aulas';
+                
+                final String descricaoOriginal = widget.descricao[indiceOriginal];
+                final String descricaoModificada = descricaoOriginal.replaceFirst(RegExp(r'\d+ aulas'), textoAulas);
+
                 return Card(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
@@ -76,7 +83,7 @@ class _CursoPageState extends State<CursoPage> {
                             leading: const CircleAvatar(
                               child: Icon(Icons.play_arrow),
                             ),
-                            subtitle: Text(widget.descricao[indiceOriginal]),
+                            subtitle: Text(descricaoModificada),
                             trailing: const Icon(Icons.chevron_right),
                           ),
                         ),

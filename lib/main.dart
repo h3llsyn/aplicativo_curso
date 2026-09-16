@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage>{
   ];
 
   late final List<bool> favoritos = List.filled(cursos.length, false);
-  late final List<double> progresso = [0.12, 0.45, 0.80, 0.0, 0.0, 0.0];
+  late final List<double> progresso = [0.10, 0.40, 0.80, 0.0, 0.0, 0.0];
 
   final titulos = [
     'Home',
