@@ -1,3 +1,4 @@
+import 'package:aplicativo_cursos/widgets/secoesCard.dart';
 import 'package:flutter/material.dart';
 
 class InicioPage extends StatelessWidget {
@@ -20,123 +21,19 @@ class InicioPage extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: LinearGradient(
-                    colors: [
-                      const Color.fromARGB(255, 234, 114, 255),
-                      const Color.fromARGB(255, 255, 156, 25),
-                    ],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10,
-                      offset: Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      '4',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      'Cursos iniciados',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            SecoesCard(
+              quantidade: '4',
+              subtitulo: 'Cursos iniciados'
             ),
             SizedBox(width: 12),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: LinearGradient(
-                    colors: [const Color.fromARGB(255, 234, 114, 255),
-                      const Color.fromARGB(255, 255, 156, 25),],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10,
-                      offset: Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      '1',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      'Cursos concluídos',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            SecoesCard(
+              quantidade: '1',
+              subtitulo: 'Cursos concluídos'
             ),
             SizedBox(width: 12),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: LinearGradient(
-                    colors: [const Color.fromARGB(255, 234, 114, 255),
-                      const Color.fromARGB(255, 255, 156, 25),],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10,
-                      offset: Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      '18',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      'Aulas concluídos',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            SecoesCard(
+              quantidade: '18',
+              subtitulo: 'Aulas concluídas'
             ),
           ],
         ),
